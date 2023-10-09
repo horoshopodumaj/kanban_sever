@@ -15,7 +15,7 @@ function Column({ colIndex }) {
     useEffect(() => {
         setColor(shuffle(colors).pop());
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
+    }, []);
 
     const handleOnDrop = (e) => {
         e.preventDefault();

@@ -21,7 +21,7 @@ export class BoardAPI {
 
 export async function fetchBoardList() {
     const api = new BoardAPI();
-    return api.fetchBoardList();
+    return await api.fetchBoardList();
 }
 export function updateLocalStorageBoards(boards) {
     return localStorage.setItem(LocalStorageKeyName, JSON.stringify(boards));
