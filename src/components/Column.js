@@ -18,10 +18,16 @@ function Column({ colIndex }) {
     }, [dispatch]);
 
     const handleOnDrop = (e) => {
-        const { prevColIndex, taskIndex } = JSON.parse(e.dataTransfer.getData("text"));
+        e.preventDefault();
+        const jsonString = e.dataTransfer.getData("text");
+        try {
+            const { prevColIndex, taskIndex } = JSON.parse(jsonString);
 
-        if (colIndex !== prevColIndex) {
-            dispatch(boardsSlice.actions.dragTask({ colIndex, prevColIndex, taskIndex }));
+            if (colIndex !== prevColIndex) {
+                dispatch(boardsSlice.actions.dragTask({ colIndex, prevColIndex, taskIndex }));
+            }
+        } catch (error) {
+            console.error("Ошибка при парсинге JSON:", error);
         }
     };
 
