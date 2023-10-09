@@ -7,7 +7,7 @@ import boardsSlice from "../redux/boardSlice";
 function AddEditTaskModal({ type, device, setIsTaskModalOpen, setIsAddTaskModalOpen, taskIndex, prevColIndex = 0 }) {
     const dispatch = useDispatch();
     const [isFirstLoad, setIsFirstLoad] = useState(true);
-    const [isValid, setIsValid] = useState(true);
+    const [isValid, setIsValid] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const columns = useSelector((state) => state.boards);
@@ -33,17 +33,17 @@ function AddEditTaskModal({ type, device, setIsTaskModalOpen, setIsAddTaskModalO
     };
 
     const validate = () => {
-        setIsValid(false);
         if (!title.trim()) {
-            return false;
+            setIsValid(false);
+            return;
         }
         for (let i = 0; i < subtasks.length; i++) {
             if (!subtasks[i].title.trim()) {
-                return false;
+                setIsValid(false);
+                return;
             }
         }
         setIsValid(true);
-        return true;
     };
 
     if (type === "edit" && isFirstLoad) {

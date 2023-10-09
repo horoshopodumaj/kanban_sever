@@ -16,13 +16,13 @@ function Header() {
                     <button
                         className=" button hidden md:block "
                         onClick={() => {
-                            setIsTaskModalOpen((prevState) => !prevState);
+                            setIsTaskModalOpen(true);
                         }}>
                         + Новая задача
                     </button>
                     <button
                         onClick={() => {
-                            setIsTaskModalOpen((prevState) => !prevState);
+                            setIsTaskModalOpen(true);
                         }}
                         className=" button py-1 px-3 md:hidden ">
                         +
